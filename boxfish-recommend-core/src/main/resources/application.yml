@@ -1,0 +1,92 @@
+spring.application.name: boxfish-recommend-core
+
+logging:
+  file: ${user.home}/logs/${spring.application.name}.log
+  level:
+    org.springframework: INFO
+    com.boxfishedu: DEBUG
+
+server.tomcat.accesslog:
+  enabled: true
+  directory: ${user.home}/logs
+  prefix: ${spring.application.name}_accesslog
+
+
+server.port: 8001
+
+
+spring.jpa:
+  show-sql: true
+#  generate-ddl: true
+#  hibernate.ddl-auto: update
+  database-platform: org.hibernate.dialect.MySQL57InnoDBDialect
+  hibernate.naming_strategy: org.hibernate.cfg.ImprovedNamingStrategy
+
+spring.datasource:
+  driver-class-name: com.mysql.jdbc.Driver
+  test-while-idle: true
+  validation-query: SELECT 1
+  initial-size: 2
+  max-active: 50
+  max-idle: 20
+
+
+spring.profiles.active: production
+
+---
+spring.profiles: production
+
+
+spring.datasource:
+  url: jdbc:mysql://boxfish-online-2016-outside.mysql.rds.aliyuncs.com?useUnicode=true&characterEncoding=utf8
+  username: recommend2016
+  password: opPQKHpiesQFrwfaKkxBkykjCh64Gkwx
+
+boxfish.recommend:
+  serviceForToken:      http://base.boxfish.cn/passbook/user/me
+
+  serviceForPreference: http://api.boxfish.cn/preference/getting/user/{user_id}
+  serviceForReport:     http://api.boxfish.cn/course_history/save_history
+
+  serviceForCandidate:  http://base.boxfish.cn/recommend/provider/lessons/candidate
+  serviceForCourseInfo: http://base.boxfish.cn/recommend/provider/lesson/info/{course_id}
+  serviceForHistory:    http://base.boxfish.cn/recommend/provider/history/{user_id}
+
+---
+spring.profiles: preproduction
+
+
+spring.datasource:
+  url: jdbc:mysql://boxfish2016outside.mysql.rds.aliyuncs.com?useUnicode=true&characterEncoding=utf8
+  username: service
+  password: Box123456
+
+boxfish.recommend:
+  serviceForToken:      http://base.boxfish.cn/passbook/user/me
+
+  serviceForPreference: http://api.boxfish.cn/preference/getting/user/{user_id}
+  serviceForReport:     http://api.boxfish.cn/course_history/save_history
+
+  serviceForCandidate:  http://121.196.222.156:8002/recommend/provider/lessons/candidate
+  serviceForCourseInfo: http://121.196.222.156:8002/recommend/provider/lesson/info/{course_id}
+  serviceForHistory:    http://121.196.222.156:8002/recommend/provider/history/{user_id}
+
+---
+spring.profiles: local
+
+
+spring.datasource:
+  url: jdbc:mysql://localhost:3306?useUnicode=true&characterEncoding=utf8
+  username: root
+  password: root
+
+boxfish.recommend:
+  serviceForToken:      http://base.boxfish.cn/passbook/user/me
+
+  serviceForPreference: http://api.boxfish.cn/preference/getting/user/{user_id}
+  serviceForReport:     http://api.boxfish.cn/course_history/save_history
+
+  serviceForCandidate:  http://localhost:8002/recommend/provider/lessons/candidate
+  serviceForCourseInfo: http://localhost:8002/recommend/provider/lesson/info/{course_id}
+  serviceForHistory:    http://localhost:8002/recommend/provider/history/{user_id}
+

@@ -1,0 +1,15 @@
+spring.application.name: boxfish-event-config
+
+#=== Cloud Configration For Server ===
+spring.profiles.active: native
+
+#=== Cloud Configration For Client ===
+#spring:
+#  cloud:
+#    config:
+#      fail-fast: true
+#      uri: http://localhost:9000
+#      username: bebase2
+#      password: boxfish
+#  profiles:
+#    active: aliyun,development

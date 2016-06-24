@@ -1,0 +1,23 @@
+spring.application.name: boxfish-event-config
+
+logging:
+  file: ${user.home}/logs/${spring.application.name}.log
+  level:
+    org.springframework: INFO
+    com.boxfishedu: DEBUG
+
+server.port: 9000
+
+security:
+  user:
+    name: bebase2
+    password: boxfish
+
+
+---
+spring.profiles: aliyun
+
+aliyun:
+  accountId: 1296825402699921
+  accessKey: 22stee7bkfs8phyn5pbkfwuc
+  accessSecret: e4m4bWoosdcSlF4aFpJLZAAYylw=
